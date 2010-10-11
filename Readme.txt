@@ -6,7 +6,7 @@ Requires at least: 2.9.x & buddypress 1.2.x
 Tested up to: 3.0.1 & buddypress 1.2.x
 Stable tag:  1.0
 
-This plugin adds an option page Seo for Buddypress under your Buddypress admin.
+This plugin adds an option page SeoPress in your admin bar.
 
 == Description ==
 SeoPress is a replacement for "Seo for Buddypress", because the old name wasn't correct anymore.
