@@ -2,7 +2,7 @@
 Contributors: svenl77,mahype
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NWEYBQUNE5PVY
 Tags: seo,buddypress,wpmu,wp
-Requires at least: 2.9.x & buddypress 1.2.x
+Requires at least: 2.9.x
 Tested up to: 3.0.1 & buddypress 1.2.x
 Stable tag:  1.0
 
