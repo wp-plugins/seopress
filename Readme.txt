@@ -52,24 +52,18 @@ For bug report and feature requests please go to:<br><br>
 http://buddypress.org/community/groups/seopress/
 <br>
 == Installation ==
+1. Upload 'SeoPress' to the '/wp-content/plugins/' directory<br>
+2. a) If you use standard Wordpress installation:<br>
+Activate the plugin through the 'Plugins' menu in WordPress<br>
+2. b) If you use Multiuser installation:<br>
+Activate the plugin "sidewide" through the 'Plugins' menu in WordPress<br>
+3. If you use Buddypress:<br>
+Be sure that the main Blog header template uses  bp_page_title() instead of wp_title() function.<br><br>
 
-1. Upload 'Seo for buddypress' to the '/wp-content/plugins/' directory<br>
-2. Activate the plugin through the 'Plugins' menu in WordPress<br>
-<br>
-In the main blog theme header.php, must exist<br>
-< title > < ?php bp_page_title() ? > < /title >
-<br>
-In the user blog theme header.php, must exist<br>
-< title > < ?php wp_title(); ? > < /title >
+That's it, have fun.
+ <br>
+Plugin is updatefriendly, all needed migration from older versions, will be done on activation.<br>
 
-<br>
-These are the standard title tags. Added by buddypress and wordpress by default in the header.php.<br>
-If you did not change your themes, or did any customisation, they will be there. <br>
-<br><br>
-That's it, have fun.<br><br>
-
-Update:
-Plugin is update frendly, all needet changes from old versions, will be done bei activation.
 == Screenshots ==
 
 1. **Welcome**
