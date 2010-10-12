@@ -143,7 +143,7 @@ function bp_seo_main_page() {
     <div id="tab-head">
       <div class="sfb-entry">
       <div class="sfb-entry-title"><?php _e ('Get the SeoPress Pro version', 'bp-seo'); ?></div><br>
-      <div><?php _e ('Comming soon!', 'bp-seo'); ?></div><br>
+      <div><?php _e ('Coming soon!', 'bp-seo'); ?></div><br>
 
       </div>
     </div>
