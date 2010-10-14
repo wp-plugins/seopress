@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp
 Requires at least: 2.9.x
 Tested up to: 3.0.1 & buddypress 1.2.x
-Stable tag:  1.0
+Stable tag:  1.0.1
 
 This plugin adds an option page SeoPress in your admin bar.
 
@@ -76,6 +76,10 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 
 
 == Changelog ==
+<h4>1.0.1</h4>
+<ul>
+<li>CSS bugfix and backend tweaking</li>
+</ul>
 <h4>1.0</h4>
 <ul>
 <li>The version "SeoPress 1.0" is a replacemand for the old plugin "Seo for Buddypress".</li>

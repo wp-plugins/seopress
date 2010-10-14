@@ -393,9 +393,9 @@ function bp_seo_entry($lable,$meta){
   $tmp .= '			<INPUT TYPE="hidden" NAME="sub_comp_slug[]"  VALUE="'.$lable[5].'">';
   if($meta[3]==true){$checked="checked";} 
   $tmp .= '			<input name="'.$lable[6].'" type="checkbox" '.$checked.' value="1"/> (Block searchengines from indexing this page)<br>';
-  $tmp  .= '<div class="barbox" id="barbox'.$lable[1].'"><div class="bar" id="bar'.$lable[1].'"></div></div><div class="count" id="count'.$lable[1].'">'.$metatitle_length.'</div>';
+  $tmp  .= '<div class="seo_barbox" id="barbox'.$lable[1].'"><div class="seo_bar" id="bar'.$lable[1].'"></div></div><div class="seo_count" id="count'.$lable[1].'">'.$metatitle_length.'</div>';
   $tmp .= '			<input name="'.$lable[1].'" type="text" style="width: 70%;" id="'.$lable[1].'" value="'.$meta[0].'"/><br>';
-  $tmp  .= '<div class="barbox" id="barbox'.$lable[2].'"><div class="bar" id="bar'.$lable[2].'"></div></div><div class="count" id="count'.$lable[2].'">'.$metadesc_length.'</div>';
+  $tmp  .= '<div class="seo_barbox" id="barbox'.$lable[2].'"><div class="seo_bar" id="bar'.$lable[2].'"></div></div><div class="seo_count" id="count'.$lable[2].'">'.$metadesc_length.'</div>';
   $tmp .= '	  		<textarea name="'.$lable[2].'" type="text" id="'.$lable[2].'"  rows="5" style="width: 70%;"/>'.$meta[1].'</textarea><br>';
   $tmp .= '		   <input name="'.$lable[3].'" type="text" style="width: 70%;" id="'.$lable[3].'" value="'.$meta[2].'"/>';
   $tmp .= '		</div>';

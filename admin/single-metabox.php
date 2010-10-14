@@ -65,12 +65,12 @@ function seo4all_metabox(){
 			<input name="seo4all_noindex" id="seo4all_noindex" type="checkbox" <?php echo $checked ?> value="1" /> (Block searchengines from indexing this page)
 		</p>
 			<p>
-				<div class="barbox" id="barboxseo4all_title"><div class="bar" id="barseo4all_title"></div></div><div class="count" id="countseo4all_title"><?php echo $metatitle_length ?></div>
+				<div class="seo_barbox" id="barboxseo4all_title"><div class="seo_bar" id="barseo4all_title"></div></div><div class="seo_count" id="countseo4all_title"><?php echo $metatitle_length ?></div>
 				<label for="seo4all_title"><?php _e('Title')?>:</label>
 				<input type="text" name="seo4all_title" id="seo4all_title" value="<?php echo $title; ?>" />
 			</p>
 			<p>
-				<div class="barbox" id="barboxseo4all_description"><div class="bar" id="barseo4all_description"></div></div><div class="count" id="countseo4all_description"><?php echo $metadesc_length ?></div>
+				<div class="seo_barbox" id="barboxseo4all_description"><div class="seo_bar" id="barseo4all_description"></div></div><div class="seo_count" id="countseo4all_description"><?php echo $metadesc_length ?></div>
 				<label for="seo4all_description"><?php _e('Description')?>:</label>
 				<input type="text" name="seo4all_description" id="seo4all_description" value="<?php echo $description; ?>" />
 			</p>

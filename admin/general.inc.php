@@ -117,6 +117,9 @@ function bp_seo_general(){
 			  <?php if(defined( 'SITE_ID_CURRENT_SITE' )){?>
 			  <li><a href="#cap_user_blogs" ><?php _e ('User Blogs', 'bp-seo') ?></a></li>
 			  <?php } ?>
+			  <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+	      		<li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
+			  <?php } ?>
 		  </ul>
 	
 			<div id="cap_settings">
@@ -428,7 +431,11 @@ function bp_seo_general(){
 		  	  	<?php echo bp_seo_entry($lable,$user_blog_tag_pages); ?>
 		    </div>
 		  	<?php } ?>
-		
+		  	<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+			  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+			   <?php seopress_get_pro();?>
+			  </div>
+			<?php } ?>
 		</div>    
 	  	<script> $(function() { $("#config-tabs").tabs(); }); </script>
 	    <p><div class="submit"><input type="submit" name="update_bp_seo" value="<?php _e('Save General SEO options', 'update_bp_seo') ?>"  style="font-weight:bold;" /></div></p>	

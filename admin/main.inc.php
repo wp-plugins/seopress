@@ -49,7 +49,9 @@ function bp_seo_main_page() {
 	  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	      <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#cap_welcome"><?php _e ('Welcome', 'bp-seo') ?></a></li>
 	      <li class="ui-state-default ui-corner-top"><a href="#cap_specialtags"><?php _e ('Special Tags', 'bp-seo') ?></a></li>
-	      <li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Pro Version', 'bp-seo') ?></a></li>
+	   	<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+	      <li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
+	  	<?php } ?>
 	  </ul>
 	
 	  <div id="cap_welcome" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
@@ -70,7 +72,7 @@ function bp_seo_main_page() {
 	  <div id="cap_specialtags" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 	    <div id="tab-head">
 	      	<div class="sfb-entry">
-			<div class="sfb-entry-title"><?php _e ('Special Tags', 'bp-seo') ?></div>
+			<h2><?php _e ('Special Tags', 'bp-seo') ?></h2>
 				<p><?php _e ('Special Tags are place holders to use in the meta data to specifay the content. Not all Tags are avalibe everywere. Use every tag with care, and check if the tag is suportet and gife you back the result you wanted.', 'bp-seo'); ?></p><br>
 			  <div class="sfb-entry-title"><?php _e ('Special Tags for WP and WPMU', 'bp-seo') ?></div>
 				<p><?php _e ('These tags can be included and will be replaced when the main/user blog pages or posts are displayed.', 'bp-seo'); ?></p>
@@ -153,15 +155,11 @@ function bp_seo_main_page() {
 		</div>
 	    <div class="spacer"></div>
 	  </div>
+	  <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
 	  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-	    <div id="tab-head">
-	      <div class="sfb-entry">
-		      <div class="sfb-entry-title"><?php _e ('Get the SeoPress Pro version', 'bp-seo'); ?></div><br>
-		      <div><?php _e ('Coming soon!', 'bp-seo'); ?></div><br>
-		  </div>
-	    </div>
-	    <div class="spacer"></div>
+	   <?php seopress_get_pro();?>
 	  </div>
+	  <?php } ?>
 	</div>
 	<script> $(function() { $("#config-tabs").tabs(); }); </script>
 	</div>

@@ -58,8 +58,10 @@ function bp_seo_plugins() {
 		    if($bp_component != 'profile' && $bp_component != 'activity' && $bp_component != 'blogs' && $bp_component != 'forums' && $bp_component != 'friends' && $bp_component != 'groups' && $bp_component != 'messages'&& $bp_component != 'settings'){
 		      echo '<li><a href="#cap_'.$bp_component.'">'.$bp_component.'</a></li>';
 		    }
-		  }
-		  ?>
+		  }?>
+		<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+	      <li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
+	  	<?php } ?>
 	  </ul>
 	
 	    <div id="cap_configuration" >
@@ -133,11 +135,17 @@ function bp_seo_plugins() {
 	            echo '<div id="cap_'.$bp_component.'">'. get_plugin_seo_options($bp_component,$bp_seo_components).'</div>';
 	            $i++;
 	          }
-	      }
-	      echo '
-	    </div>
-	  </div>';
-	  echo   '<script> $(function() { $("#config-tabs").tabs(); }); </script>';
+	      }?>
+
+	      <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+			  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+			   <?php seopress_get_pro();?>
+			  </div>
+		 <?php } ?>
+	</div>
+	<script> $(function() { $("#config-tabs").tabs(); }); </script>
+</div>
+<?php 	    
 }
 
 function get_plugin_seo_options($bp_component,$bp_seo_components){
