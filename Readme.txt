@@ -13,7 +13,7 @@ SeoPress is a replacement for "Seo for Buddypress", because the old name wasn't 
 
 SeoPress is professional search engine optimization for:<br>
 <br>
-<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Update to Pro Version</a>
+<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Upgrade to Pro Version</a>
 <br>
 <ul>
 <li>Wordpress</li>
