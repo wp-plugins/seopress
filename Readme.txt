@@ -78,7 +78,7 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 
 
 == Changelog ==
-<h4>1.0.1</h4>
+<h4>1.0.2</h4>
 <ul>
 <li>
 There was a bug, if you select "displays your latest post" as front page. And the latest post has a meta values in the post meta,
