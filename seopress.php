@@ -6,7 +6,7 @@ Description: Seo for Wordpress, Wordpress MU and Buddypress
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://sven-lehnert.de
 License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
-Version: 1.0.1
+Version: 1.0.2
 Text Domain: bp_seo
 Site Wide Only: false
 */

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp
 Requires at least: 2.9.x
 Tested up to: 3.0.1 & buddypress 1.2.x
-Stable tag:  1.0.1
+Stable tag:  1.0.2
 
 This plugin adds an option page SeoPress in your admin bar.
 
@@ -18,7 +18,9 @@ SeoPress is professional search engine optimization for:<br>
 <li>Wordpress MU (MultiSite)</li>
 <li>Buddypress</li>
 </ul>
-
+<br><br>
+<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Update to Pro Version</a>
+<br><br>
 It recognises your type of Wordpress installation automatically and offers you all SEO options you might need, e.g. for the activated Buddypress components.<br><br>
 
 <b>Functionality:</b><br>
@@ -76,6 +78,13 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 
 
 == Changelog ==
+<h4>1.0.1</h4>
+<ul>
+<li>
+There was a bug, if you select "displays your latest post" as front page. And the latest post has a meta values in the post meta,
+The plugin used the last post meta values instead of the homepage values.
+</li>
+</ul>
 <h4>1.0.1</h4>
 <ul>
 <li>CSS bugfix and backend tweaking</li>

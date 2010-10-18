@@ -100,6 +100,10 @@ function bp_seo(){
   	$current_action = $bp->current_action;
   	$directory = $bp->is_directory;
 
+  	if (is_front_page()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_start"));
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
   	### MAIN BLOG START
   	if (is_home()) {
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_start"));
@@ -110,10 +114,6 @@ function bp_seo(){
   		if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
     }
-  	if (is_front_page()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_start"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
   	if ( bp_is_activity_front_page()){
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
