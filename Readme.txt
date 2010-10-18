@@ -12,16 +12,16 @@ This plugin adds an option page SeoPress in your admin bar.
 SeoPress is a replacement for "Seo for Buddypress", because the old name wasn't correct anymore.
 
 SeoPress is professional search engine optimization for:<br>
-
+<br>
+<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Update to Pro Version</a>
+<br>
 <ul>
 <li>Wordpress</li>
 <li>Wordpress MU (MultiSite)</li>
 <li>Buddypress</li>
 </ul>
-<br><br>
-<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Update to Pro Version</a>
-<br><br>
-It recognises your type of Wordpress installation automatically and offers you all SEO options you might need, e.g. for the activated Buddypress components.<br><br>
+
+SeoPress recognises your type of Wordpress installation automatically and offers you all SEO options you might need, e.g. for the activated Buddypress components.<br><br>
 
 <b>Functionality:</b><br>
 <ul>
