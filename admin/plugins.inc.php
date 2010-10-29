@@ -59,7 +59,7 @@ function bp_seo_plugins() {
 		      echo '<li><a href="#cap_'.$bp_component.'">'.$bp_component.'</a></li>';
 		    }
 		  }?>
-		<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+		<?php if(!is_pro()){ ?>
 	      <li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
 	  	<?php } ?>
 	  </ul>
@@ -137,7 +137,7 @@ function bp_seo_plugins() {
 	          }
 	      }?>
 
-	      <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+		<?php if(!is_pro()){ ?>
 			  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 			   <?php seopress_get_pro();?>
 			  </div>

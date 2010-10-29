@@ -31,11 +31,11 @@ function seo4all_metabox(){
 	if(get_option('bp_seo_metatitle_length')){
 		$metatitle_length = get_option('bp_seo_metatitle_length');
 	}
-	
-	$title=get_seo4all_title();
-	$description=get_seo4all_description();
-	$keywords=get_seo4all_keywords();
-	$noindex=get_seo4all_noindex();
+	$metapostvalue = get_seopress_postmeta();
+	$title=$metapostvalue[0];
+	$description=$metapostvalue[1];
+	$keywords=$metapostvalue[2];
+	$noindex=$metapostvalue[3];
 	
 	if($noindex == 1){
 		$checked = "checked";

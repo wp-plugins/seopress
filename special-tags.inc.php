@@ -165,8 +165,12 @@ class SFB_Special_Tags
 		if (strpos ($value, '%%caption%%') !== false)
 			$value = str_replace ('%%caption%%', $post->post_excerpt, $value);
 
-
-
+		if (strpos ($value, '%%postdate%%') !== false)
+			$value = str_replace ('%%postdate%%',get_the_date(), $value);
+		if (strpos ($value, '%%postdate_month_year%%') !== false)
+			$value = str_replace ('%%postdate_month_year%%',get_the_date('F Y'), $value);
+		if (strpos ($value, '%%archivedate%%') !== false)
+			$value = str_replace ('%%archivedate%%',SFB_Special_Tags::get_archivedate(), $value);
 
 		// Buddypress
 		if (strpos ($value, '%%componentname%%') !== false)
@@ -320,6 +324,24 @@ class SFB_Special_Tags
 			}    
      }   
      return $value;
+	}
+	
+	/**
+	 * Return the Archive Date
+	 *
+	 * @return string
+	 **/
+	
+	function get_archivedate() {
+		if (is_day()) {
+			return	get_the_date() ;
+		}
+		if (is_month()) {
+			return	get_the_date('F Y') ;
+		}
+		if (is_year()) {
+			return	get_the_date('Y') ;
+		}
 	}
 	
 	/**

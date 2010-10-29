@@ -23,242 +23,247 @@ For full license details see license.txt
 ### Update General Seo page to the option table.
 function bp_seo_general_page(){
   global $current_user;
+	
+  $msg = false;
   if ( isset( $_POST['update_bp_seo'] ) ) {
     ### Directory Blogs
     $directory_blogs = Array($_POST['directory_blogs_title'],$_POST['directory_blogs'],$_POST['directory_blogs_tags'],$_POST['directory_blogs_noindex']);
     if($directory_blogs != get_option('bp_seo_directory_blogs')){
 		update_option('bp_seo_directory_blogs', $directory_blogs);
-		echo '<div class="updated"><p>Directory blogs meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Directory Activity
     $directory_activity = Array($_POST['directory_activity_title'],$_POST['directory_activity'],$_POST['directory_activity_tags'],$_POST['directory_activity_noindex']) ;
     if($directory_activity != get_option('bp_seo_directory_activity')){
 		update_option('bp_seo_directory_activity', $directory_activity);
-		echo '<div class="updated"><p>Directory Activity meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Directory Members
     $directory_members = Array($_POST['directory_members_title'],$_POST['directory_members'],$_POST['directory_members_tags'],$_POST['directory_members_noindex']) ;
     if($directory_members != get_option('bp_seo_directory_members')){
 		update_option('bp_seo_directory_members', $directory_members);
-		echo '<div class="updated"><p>Directory Members meta changes saved.</p></div>'; 
+		$msg = true;    
     }
     ### Directory Groups
     $directory_groups = Array($_POST['directory_groups_title'],$_POST['directory_groups'],$_POST['directory_groups_tags'],$_POST['directory_groups_noindex']) ;
     if($directory_groups != get_option('bp_seo_directory_groups')){
 		update_option('bp_seo_directory_groups', $directory_groups);
-		echo '<div class="updated"><p>Directory Groups meta changes saved.</p></div>'; 
+		$msg = true;    
     }
     ### Directory Forums
     $directory_forums = Array($_POST['directory_forums_title'],$_POST['directory_forums'],$_POST['directory_forums_tags'],$_POST['directory_forums_noindex']) ;
     if($directory_forums != get_option('bp_seo_directory_forums')){
 		update_option('bp_seo_directory_forums', $directory_forums);
-		echo '<div class="updated"><p>Directory Forums meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Home
     $profil = Array($_POST['profil_title'],$_POST['profil'],$_POST['profil_tags'],$_POST['profil_noindex']) ;
     if($profil != get_option('bp_seo_profil')){
 		update_option('bp_seo_profil', $profil);
-	echo '<div class="updated"><p>Profil Home meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Blogs
     $profil_blogs = Array($_POST['profil_blogs_title'],$_POST['profil_blogs'],$_POST['profil_blogs_tags'],$_POST['profil_blogs_noindex']) ;
     if($profil_blogs != get_option('bp_seo_profil_blogs')){
 		update_option('bp_seo_profil_blogs', $profil_blogs);
-	echo '<div class="updated"><p>Profil Blogs meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Blogs  recent_posts
     $profil_blogs_recent_posts = Array($_POST['profil_blogs_recent_posts_title'],$_POST['profil_blogs_recent_posts'],$_POST['profil_blogs_recent_posts_tags'],$_POST['profil_blogs_recent_posts_noindex']) ;
     if($profil_blogs_recent_posts != get_option('bp_seo_profil_blogs_recent_posts')){
 		update_option('bp_seo_profil_blogs_recent_posts', $profil_blogs_recent_posts);
-		echo '<div class="updated"><p>Profil Blogs recent_posts meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Blogs recent_commments
     $profil_blogs_recent_commments = Array($_POST['profil_blogs_recent_commments_title'],$_POST['profil_blogs_recent_commments'],$_POST['profil_blogs_recent_commments_tags'],$_POST['profil_blogs_recent_commments_noindex']) ;
     if($profil_blogs_recent_commments != get_option('bp_seo_profil_blogs_recent_commments')){
 		update_option('bp_seo_profil_blogs_recent_commments', $profil_blogs_recent_commments);
-		echo '<div class="updated"><p>Profil Blogs recent_commments meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile friends
     $profil_friends = Array($_POST['profil_friends_title'],$_POST['profil_friends'],$_POST['profil_friends_tags'],$_POST['profil_friends_noindex']) ;
     if($profil_friends != get_option('bp_seo_profil_friends')){
 		update_option('bp_seo_profil_friends', $profil_friends);
-		echo '<div class="updated"><p>Profil friends meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Groups
     $profil_groups = Array($_POST['profil_groups_title'],$_POST['profil_groups'],$_POST['profil_groups_tags'],$_POST['profil_groups_noindex'] );
     if($profil_groups != get_option('bp_seo_profil_groups')){
 		update_option('bp_seo_profil_groups', $profil_groups);
-		echo '<div class="updated"><p>Profil Groups meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Wire
     $profil_wire = Array($_POST['profil_wire_title'],$_POST['profil_wire'],$_POST['profil_wire_tags'],$_POST['profil_wire_noindex']) ;
     if($profil_wire != get_option('bp_seo_profil_wire')){
 		update_option('bp_seo_profil_wire', $profil_wire);
-		echo '<div class="updated"><p>Profil Wire meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Activity
     $profil_activity = Array($_POST['profil_activity_title'],$_POST['profil_activity'],$_POST['profil_activity_tags'],$_POST['profil_activity_noindex']) ;
     if($profil_activity != get_option('bp_seo_profil_activity')){
 		update_option('bp_seo_profil_activity', $profil_activity);
-		echo '<div class="updated"><p>Profil Activity meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Profile Activity Friends 
     $profil_activity_friends = Array($_POST['profil_activity_friends_title'],$_POST['profil_activity_friends'],$_POST['profil_activity_friends_tags'],$_POST['profil_activity_friends_noindex']) ;
     if($profil_activity_friends != get_option('bp_seo_profil_activity_friends')){
 		update_option('bp_seo_profil_activity_friends', $profil_activity_friends);
-		echo '<div class="updated"><p>Profil Activity Friends  meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Groups Forum
     $groups_forum = Array($_POST['groups_forum_title'],$_POST['groups_forum'],$_POST['groups_forum_tags'],$_POST['groups_forum_noindex']) ;
     if($groups_forum != get_option('bp_seo_groups_forum')){
 		update_option('bp_seo_groups_forum', $groups_forum);
-		echo '<div class="updated"><p>Groups Forum meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Groups Forum Topic
     $groups_forum_topic = Array($_POST['groups_forum_topic_title'],$_POST['groups_forum_topic'],$_POST['groups_forum_topic_tags'],$_POST['groups_forum_topic_noindex']) ;
     if($groups_forum_topic != get_option('bp_seo_groups_forum_topic')){
 		update_option('bp_seo_groups_forum_topic', $groups_forum_topic);
-		echo '<div class="updated"><p>Groups Forum Topic meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Groups Wire
     $groups_wire = Array($_POST['groups_wire_title'],$_POST['groups_wire'],$_POST['groups_wire_tags'],$_POST['groups_wire_noindex']) ;
     if($groups_wire != get_option('bp_seo_groups_wire')){
 		update_option('bp_seo_groups_wire', $groups_wire);
-		echo '<div class="updated"><p>Groups Wire meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Groups Members
     $groups_members = Array($_POST['groups_members_title'],$_POST['groups_members'],$_POST['groups_members_tags'],$_POST['groups_members_noindex']) ;
     if($groups_members != get_option('bp_seo_groups_members')){
 		update_option('bp_seo_groups_members', $groups_members);
-		echo '<div class="updated"><p>Groups Members meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### Groups Home
     $groups_home = Array($_POST['groups_home_title'],$_POST['groups_home'],$_POST['groups_home_tags'],$_POST['groups_home_noindex']) ;
     if($groups_home != get_option('bp_seo_groups_home')){
 		update_option('bp_seo_groups_home', $groups_home);
-		echo '<div class="updated"><p>Groups Home meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG START
     $main_blog_start = Array($_POST['main_blog_start_title'],$_POST['main_blog_start'],$_POST['main_blog_start_tags'],$_POST['main_blog_start_noindex']) ;
     if($main_blog_start != get_option('bp_seo_main_blog_start')){
 		update_option('bp_seo_main_blog_start', $main_blog_start);
-		echo '<div class="updated"><p>Main Blog Start meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG HOME
     $main_blog = Array($_POST['main_blog_title'],$_POST['main_blog'],$_POST['main_blog_tags'],$_POST['main_blog_noindex']) ;
     if($main_blog != get_option('bp_seo_main_blog')){
 		update_option('bp_seo_main_blog', $main_blog);
-		echo '<div class="updated"><p>Main Blog Home meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG ARCHIVE
     $main_blog_archiv = Array($_POST['main_blog_archiv_title'],$_POST['main_blog_archiv'],$_POST['main_blog_archiv_tags'],$_POST['main_blog_archiv_noindex']) ;
     if($main_blog_archiv != get_option('bp_seo_main_blog_archiv')){
 		update_option('bp_seo_main_blog_archiv', $main_blog_archiv);
-		echo '<div class="updated"><p>Main Blog Archiv meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG CATEGORIES
     $main_blog_cat = Array($_POST['main_blog_cat_title'],$_POST['main_blog_cat'],$_POST['main_blog_cat_tags'],$_POST['main_blog_cat_noindex']) ;
     if($main_blog_cat != get_option('bp_seo_main_blog_cat')){
 		update_option('bp_seo_main_blog_cat', $main_blog_cat);
-		echo '<div class="updated"><p>Main Blog Categories meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG POSTS 
     $main_blog_posts = Array($_POST['main_blog_posts_title'],$_POST['main_blog_posts'],$_POST['main_blog_posts_tags'],$_POST['main_blog_posts_noindex']) ;
     if($main_blog_posts != get_option('bp_seo_main_blog_posts')){
 		update_option('bp_seo_main_blog_posts', $main_blog_posts);
-		echo '<div class="updated"><p>Main Blog Post meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG PAGES
     $main_blog_pages = Array($_POST['main_blog_pages_title'],$_POST['main_blog_pages'],$_POST['main_blog_pages_tags'],$_POST['main_blog_pages_noindex']) ;
     if($main_blog_pages != get_option('bp_seo_main_blog_pages')){
 		update_option('bp_seo_main_blog_pages', $main_blog_pages);
-		echo '<div class="updated"><p>MAIN BLOG PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG AUTHOR PAGES
     $main_blog_autor_pages = Array($_POST['main_blog_autor_pages_title'],$_POST['main_blog_autor_pages'],$_POST['main_blog_autor_pages_tags'],$_POST['main_blog_autor_pages_noindex']) ;
     if($main_blog_autor_pages != get_option('bp_seo_main_blog_autor_pages')){
 		update_option('bp_seo_main_blog_autor_pages', $main_blog_autor_pages);
-		echo '<div class="updated"><p>MAIN BLOG AUTOR PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG SEARCH PAGES
     $main_blog_search_pages = Array($_POST['main_blog_search_pages_title'],$_POST['main_blog_search_pages'],$_POST['main_blog_search_pages_tags'],$_POST['main_blog_search_pages_noindex']) ;
     if($main_blog_search_pages != get_option('bp_seo_main_blog_search_pages')){
 		update_option('bp_seo_main_blog_search_pages', $main_blog_search_pages);
-		echo '<div class="updated"><p>MAIN BLOG SEARCH PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG 404 PAGES
     $main_blog_404_pages = Array($_POST['main_blog_404_pages_title'],$_POST['main_blog_404_pages'],$_POST['main_blog_404_pages_tags'],$_POST['main_blog_404_pages_noindex']) ;
     if($main_blog_404_pages != get_option('bp_seo_main_blog_404_pages')){
 		update_option('bp_seo_main_blog_404_pages', $main_blog_404_pages);
-		echo '<div class="updated"><p>MAIN BLOG 404 PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG TAG PAGES
     $main_blog_tag_pages = Array($_POST['main_blog_tag_pages_title'],$_POST['main_blog_tag_pages'],$_POST['main_blog_tag_pages_tags'],$_POST['main_blog_tag_pages_noindex']) ;
     if($main_blog_tag_pages != get_option('bp_seo_main_blog_tag_pages')){
 		update_option('bp_seo_main_blog_tag_pages', $main_blog_tag_pages);
-		echo '<div class="updated"><p>MAIN BLOG TAG PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### MAIN BLOG REGISTER PAGES
     $main_blog_reg_pages = Array($_POST['main_blog_reg_pages_title'],$_POST['main_blog_reg_pages'],$_POST['main_blog_reg_pages_tags'],$_POST['main_blog_reg_pages_noindex']) ;
     if($main_blog_reg_pages != get_option('bp_seo_main_blog_reg_pages')){
 		update_option('bp_seo_main_blog_reg_pages', $main_blog_reg_pages);
-		echo '<div class="updated"><p>MAIN BLOG REGISTER PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG HOME
     $user_blog = Array($_POST['user_blog_title'],$_POST['user_blog'],$_POST['user_blog_tags'],$_POST['user_blog_noindex']);
     if($user_blog != get_option('bp_seo_user_blog')){
 		update_option('bp_seo_user_blog', $user_blog);
-		echo '<div class="updated"><p>USER BLOG HOME meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG ARCHIVE
     $user_blog_archiv = Array($_POST['user_blog_archiv_title'],$_POST['user_blog_archiv'],$_POST['user_blog_archiv_tags'],$_POST['user_blog_archiv_noindex']) ;
     if($user_blog_archiv != get_option('bp_seo_user_blog_archiv')){
 		update_option('bp_seo_user_blog_archiv', $user_blog_archiv);
-		echo '<div class="updated"><p>USER BLOG ARCHIV meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG CATEGORIES
     $user_blog_cat = Array($_POST['user_blog_cat_title'],$_POST['user_blog_cat'],$_POST['user_blog_cat_tags'],$_POST['user_blog_cat_noindex']) ;
     if($user_blog_cat != get_option('bp_seo_user_blog_cat')){
 		update_option('bp_seo_user_blog_cat', $user_blog_cat);
-		echo '<div class="updated"><p>Directory Forums meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG POSTS 
     $user_blog_posts = Array($_POST['user_blog_posts_title'],$_POST['user_blog_posts'],$_POST['user_blog_posts_tags'],$_POST['user_blog_posts_noindex']) ;
     if($user_blog_posts != get_option('bp_seo_user_blog_posts')){
 		update_option('bp_seo_user_blog_posts', $user_blog_posts);
-		echo '<div class="updated"><p>USER BLOG POSTS meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG PAGES
     $user_blog_pages = Array($_POST['user_blog_pages_title'],$_POST['user_blog_pages'],$_POST['user_blog_pages_tags'],$_POST['user_blog_pages_noindex']) ;
     if($user_blog_pages != get_option('bp_seo_user_blog_pages')){
 		update_option('bp_seo_user_blog_pages', $user_blog_pages);
-		echo '<div class="updated"><p>USER BLOG PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG AUTHOR PAGES
     $user_blog_autor_pages = Array($_POST['user_blog_autor_pages_title'],$_POST['user_blog_autor_pages'],$_POST['user_blog_autor_pages_tags'],$_POST['user_blog_autor_pages_noindex']) ;
     if($user_blog_autor_pages != get_option('bp_seo_user_blog_autor_pages')){
 		update_option('bp_seo_user_blog_autor_pages', $user_blog_autor_pages);
-		echo '<div class="updated"><p>USER BLOG AUTOR PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG SEARCH PAGES
     $user_blog_search_pages = Array($_POST['user_blog_search_pages_title'],$_POST['user_blog_search_pages'],$_POST['user_blog_search_pages_tags'],$_POST['user_blog_search_pages_noindex']) ;
     if($user_blog_search_pages != get_option('bp_seo_user_blog_search_pages')){
 		update_option('bp_seo_user_blog_search_pages', $user_blog_search_pages);
-		echo '<div class="updated"><p>USER BLOG SEARCH PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG 404 PAGES
     $user_blog_404_pages = Array($_POST['user_blog_404_pages_title'],$_POST['user_blog_404_pages'],$_POST['user_blog_404_pages_tags'],$_POST['user_blog_404_pages_noindex']) ;
     if($user_blog_404_pages != get_option('bp_seo_user_blog_404_pages')){
 		update_option('bp_seo_user_blog_404_pages', $user_blog_404_pages);
-		echo '<div class="updated"><p>USER BLOG 404 PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }
     ### USER BLOG TAG PAGES
     $user_blog_tag_pages = Array($_POST['user_blog_tag_pages_title'],$_POST['user_blog_tag_pages'],$_POST['user_blog_tag_pages_tags'],$_POST['user_blog_tag_pages_noindex']);
     if($user_blog_tag_pages != get_option('bp_seo_user_blog_tag_pages')){
 		update_option('bp_seo_user_blog_tag_pages', $user_blog_tag_pages);
-		echo '<div class="updated"><p>USER BLOG TAG PAGES meta changes saved.</p></div>'; 
+		$msg = true;
     }   
 
+  }
+  if($msg == true){
+  	echo '<div class="updated"><p>General Seo options saved succsessfully.</p></div>';     
   }
   bp_seo_general();
 } 
@@ -364,6 +369,10 @@ function bp_seo_plugins_page(){
    */
 
 function bp_seo_entry($lable,$meta){
+  $meta[0] = stripslashes(htmlentities($meta[0]));
+  $meta[1] = stripslashes(htmlentities($meta[1]));
+  $meta[2] = stripslashes(htmlentities($meta[2]));
+  
   $metatitle_length = 150;
   $metadesc_length = 170;
   if(get_option('bp_seo_metadesc_length')){
@@ -381,7 +390,7 @@ function bp_seo_entry($lable,$meta){
   }
 
   $tmp  .= '<div class="sfb-entry">';
-  $tmp  .= '	<div class="sfb-entry-title">'.strtoupper($lable[0]).'</div>';
+  $tmp  .= '	<div class="sfb-entry-title">'.ucwords(strtolower($lable[0])).'</div>';
   $tmp .= '		<div class="sfb-entry-left">';
   $tmp .= '			<div class="sfb-item-noindex"><label for="prefix">NoIndex: </label></div>';
   $tmp .= '	 	  <div class="sfb-item-title"><label for="prefix">Title: </label></div>';
@@ -405,7 +414,7 @@ function bp_seo_entry($lable,$meta){
 } 
 
 
-### Seo for Buddypress Settings and Delete.
+### SeoPress Settings and Delete.
 function bp_seo_settings_page(){
 
   ### Set Keyword Generator on.
@@ -414,21 +423,24 @@ function bp_seo_settings_page(){
 	if(isset($_POST['bp_seo_keywords_quantity'])){
 	  update_option('bp_seo_keywords_quantity',$_POST['bp_seo_keywords_quantity']); 	
 	}
+	echo '<div class="updated"><p>Keyword generator options saved succsessfully.</p></div>';     
   }
 
-  ### Set meta title and description length.
+  ### Hide meta box in “Add New Page/Edit” screen .
   if(isset($_POST['bp_seo_meta_box_submit'])){
     update_option('bp_seo_meta_box_page',$_POST['bp_seo_meta_box_page']);  		  
-    update_option('bp_seo_meta_box_post',$_POST['bp_seo_meta_box_post']);  		  
+    update_option('bp_seo_meta_box_post',$_POST['bp_seo_meta_box_post']);  		
+    echo '<div class="updated"><p>Hide meta box options saved succsessfully.</p></div>';       
   }
 
   ### Set meta title and description length.
   if(isset($_POST['bp-meta-length'])){
     update_option('bp_seo_metatitle_length',$_POST['bp_seo_metatitle_length']);  		  
-    update_option('bp_seo_metadesc_length',$_POST['bp_seo_metadesc_length']);  		  
+    update_option('bp_seo_metadesc_length',$_POST['bp_seo_metadesc_length']);  
+    echo '<div class="updated"><p>Title and description length options saved succsessfully.</p></div>';     		  
   }
   
-  ### Delete Seo for Buddypress.
+  ### Delete SeoPress.
   if(isset($_POST['bp-seo-remove'])){
     global $wpdb;
     $options = $wpdb->get_results("SELECT * FROM wp_".SITE_ID_CURRENT_SITE."_options ORDER BY option_name");
@@ -442,12 +454,12 @@ function bp_seo_settings_page(){
 	    delete_option($option->option_name);     
 	  }
       endforeach;
-  ?> <div class="updated"><p>Seo for Buddypress filds in option table successful deleted.</p></div> <?php
+  ?> <div class="updated"><p>All SeoPress fields in the option table have been deleted successfully.</p></div> <?php
   }
 }
 
-function get_seo4all_title(){
-  global $post;
+function get_seopress_postmeta(){
+  global $post, $meta;
   $title=get_post_meta($post->ID,"_title");
   $found=false;
 
@@ -461,12 +473,11 @@ function get_seo4all_title(){
     $title=get_post_meta($post->ID,"_aioseop_title");
     $found=true;
   }
-  return $title[0];
-}
-function get_seo4all_description(){
-  global $post;
+  if($title[0]!=""){
+    $meta[0] = $title[0];
+  }
+  
   $description=get_post_meta($post->ID,"_description");
-
   // If is there is no data, getting data from wpseo
   if($description[0]==""){
     $description=get_post_meta($post->ID,"_wpseo_edit_description");
@@ -475,12 +486,11 @@ function get_seo4all_description(){
   if($description[0]==""){
     $description=get_post_meta($post->ID,"_aioseop_description");
   }
-  return $description[0];
-}
-function get_seo4all_keywords(){
-  global $post;
+  if($description[0]!=""){
+    $meta[1] = $description[0];
+  }
+  
   $keywords=get_post_meta($post->ID,"_keywords");
-
   // If is there is no data, getting data from wpseo
   if($keywords[0]==""){
     $keywords=get_post_meta($post->ID,"_wpseo_edit_keywords");
@@ -489,13 +499,17 @@ function get_seo4all_keywords(){
   if($keywords[0]==""){
     $keywords=get_post_meta($post->ID,"_aioseop_keywords");
   }
-  return $keywords[0];
-}
-function get_seo4all_noindex(){
-  global $post;
+  if($keywords[0]!=""){
+    $meta[2] = $keywords[0];
+  }
+  
   $noindex=get_post_meta($post->ID,"_noindex");
-  return $noindex[0];
+  if($noindex[0] !=""){
+  	$meta[3] = $noindex[0];
+  }
+  return $meta; 
 }
+  
 function post_seo4all_title($id){
   if (isset($_POST['seo4all_title']) === true) {
     update_post_meta($id,"_title",$_POST["seo4all_title"]);

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp
 Requires at least: 2.9.x
 Tested up to: 3.0.1 & buddypress 1.2.x
-Stable tag:  1.0.2
+Stable tag:  1.0.3
 
 This plugin adds an option page SeoPress in your admin bar.
 
@@ -78,6 +78,15 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 
 
 == Changelog ==
+<h4>1.0.3</h4>
+<ul>
+<li>Add new specialtags for post/pages date formatting and archive date</li>
+<li>Add the possibility to use specialtags in post/page metabox</li>
+<li>Add wp_enqueue_script to load jquery</li>
+<li>Add javascript to verify the option settings. Alerts before delete and so on.</li>
+<li><Clean up the code and add documentation/li>
+<li>Some Bugfixes</li>
+</ul>
 <h4>1.0.2</h4>
 <ul>
 <li>

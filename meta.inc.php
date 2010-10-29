@@ -27,61 +27,67 @@ function bp_seo_mu(){
 	
 	### USER BLOG HOME
   	if (is_home()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog"));
-    	if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-	  	if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-	  	if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}    
+    	$meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog");
+    	// Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
 	   return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
-	### USER BLOG ARCHIVE
-  	if (is_archive() && !is_tag() && !is_category()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_archiv"));
-    			return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	} 
-	### USER BLOG CATEGORIES
-  	if (is_category()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_cat"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
-	### USER BLOG POSTS
-  	if (is_single()){
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_posts"));
-
-    	// Overwriting with manual data if exists
-    	if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-  		if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-  		if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-  		
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
-	### USER BLOG PAGES
-  	if (is_page()) {
-	    $meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_pages"));
-	    if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-	  	if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-	  	if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}    
-	    return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
-	### USER BLOG AUTHOR PAGES
-	if (is_author()) {
-	    $meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_autor_pages"));
-	    return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-	}
-	### USER BLOG SEARCH PAGES
-  	if (is_search()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_search_pages"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
-	### USER BLOG 404 PAGES
-  	if (is_404()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_404_pages"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
+  	
 	### USER BLOG TAG PAGES
   	if (is_tag()) {
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_tag_pages"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
+  	
+	### USER BLOG CATEGORIES
+  	if (is_category()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_cat"));
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+  	
+	### USER BLOG ARCHIVE
+  	if (is_archive() && !is_tag() && !is_category()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_archiv"));
+    			return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	} 
+
+	### USER BLOG POSTS
+  	if (is_single()){
+    	$meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_posts");
+    	// Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+  	
+	### USER BLOG PAGES
+  	if (is_page()) {
+	    $meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_pages");
+	 	// Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
+  		return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+  	
+	### USER BLOG AUTHOR PAGES
+	if (is_author()) {
+	    $meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_autor_pages"));
+	    return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+	}
+	
+	### USER BLOG SEARCH PAGES
+  	if (is_search()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_search_pages"));
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+  	
+	### USER BLOG 404 PAGES
+  	if (is_404()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_user_blog_404_pages"));
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+
  	return bp_seo_get_page_title();
 }
 
@@ -106,53 +112,59 @@ function bp_seo(){
   	}
   	### MAIN BLOG START
   	if (is_home()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_start"));
+    	$meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_start");
     	// Overwriting with manual data if exists
-    	if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-  		if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-  		if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-  		if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
+  		return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
     }
   	if ( bp_is_activity_front_page()){
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
-  	### MAIN BLOG ARCHIVE
-  	if (is_archive() && !is_tag() && !is_category() && !$current_component) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_archiv"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	} 
-  	### MAIN BLOG CATEGORIES
-  	if (is_category()  && !$directory){
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_cat"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
-  	### MAIN BLOG POSTS
-  	if (is_single() && !bp_is_single_item()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_posts"));
-    	// Overwriting with manual data if exists
-    	if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-  		if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-  		if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-  		if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}
+  	
+  	### MAIN BLOG TAG PAGES
+  	if (is_tag()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_tag_pages"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
   	
-  	### MAIN BLOG PAGES
-  	if (bp_is_blog_page() && !is_search() && !is_404() && !is_author() && !is_tag() && !is_single() && !bp_is_front_page()) {
-  	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_pages"));
-    	if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-  		if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-  		if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-  		if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}
+  	### MAIN BLOG CATEGORIES
+  	if (is_category() && !$directory){
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_cat"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
+  	
+  	### MAIN BLOG ARCHIVE
+  	if (is_archive()) {
+    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_archiv"));
+    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	} 
+  	
+  	### MAIN BLOG POSTS
+  	if (is_single() && !bp_is_single_item()) {
+    	$meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_posts");
+    	// Overwriting with manual data if exists
+    	$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
+  		return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+
+  	### MAIN BLOG PAGES
+  	if (bp_is_blog_page() && !is_search() && !is_404() && !is_author() && !is_tag() && !is_single() && !bp_is_front_page()) {
+  		$meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_pages");
+    	// Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
+  		return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
+  	}
+  	
   	### MAIN BLOG AUTHOR PAGES
   	if (is_author() && !$current_component) {
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_autor_pages"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
+  	
   	### MAIN BLOG SEARCH PAGES
   	if (is_search()) {
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_search_pages"));
@@ -164,11 +176,7 @@ function bp_seo(){
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_404_pages"));
     	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
-  	### MAIN BLOG TAG PAGES
-  	if (is_tag()) {
-    	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_tag_pages"));
-    	return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
-  	}
+
   	### MAIN BLOG REGISTER PAGES
   	if (bp_is_register_page()) {
     	$meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_reg_pages"));
@@ -340,20 +348,18 @@ function wp_seo(){
   	}
 	### USER BLOG POSTS
   	if (is_single()) {
-	    $meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_posts"));
-	    if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-	  	if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-	  	if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-  		if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}
+	    $meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_posts");
+	    // Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
 	    return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
 	### USER BLOG PAGES
   	if (is_page()) {
-	    $meta = replace_special_tags(get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_pages"));
-	    if(get_seo4all_title()!=""){$meta[0]=get_seo4all_title();}
-	  	if(get_seo4all_description()!=""){$meta[1]=get_seo4all_description();}
-	  	if(get_seo4all_keywords()!=""){$meta[2]=get_seo4all_keywords();}
-	  	if(get_seo4all_noindex()!=""){$meta[3]=get_seo4all_noindex();}  	  	
+	    $meta = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_main_blog_pages");
+	    // Overwriting with manual data if exists
+		$meta = get_seopress_postmeta();
+  		$meta = replace_special_tags($meta); 
 	    return bp_seo_meta_length('bp_seo_metatitle_length',$meta[0],150);
   	}
 	### USER BLOG AUTHOR PAGES
@@ -441,6 +447,7 @@ function replace_special_tags($meta){
   	$i=0;
   	foreach($meta as $data){
    		$newmeta[$i] = SFB_Special_Tags::replace ($data, $post);
+   		$newmeta[$i] = stripslashes(htmlentities($newmeta[$i], ENT_QUOTES, "UTF-8"));
    		$i++;
   	} 
   	return $newmeta; 
@@ -454,6 +461,7 @@ function bp_seo_meta_length($metatype,$meta,$metalength){
 	if($metadesc_length==""){
 		$meta=strip_tags(substr($meta,0,$metalength));
 	}
+	
 	$meta=preg_replace("/\r|\n/s", "", $meta);
 	
 	return $meta;
@@ -461,8 +469,9 @@ function bp_seo_meta_length($metatype,$meta,$metalength){
 
 function bp_seo_meta(){
 	global $meta;
-	if($meta[3]==true){?><meta name="robots" content="noindex" /><?php }
 	
+	if($meta[3]==true){?><meta name="robots" content="noindex" /><?php }
+
 	if(function_exists('get_keywords_from_content')){
 		if(get_option(bp_seo_keywords)== true){
 		    if(trim($meta[2]) == "" || trim($meta[2]) == ","){

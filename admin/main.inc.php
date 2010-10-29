@@ -49,7 +49,7 @@ function bp_seo_main_page() {
 	  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	      <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#cap_welcome"><?php _e ('Welcome', 'bp-seo') ?></a></li>
 	      <li class="ui-state-default ui-corner-top"><a href="#cap_specialtags"><?php _e ('Special Tags', 'bp-seo') ?></a></li>
-	   	<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+	   	<?php if(!is_pro()){ ?>
 	      <li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
 	  	<?php } ?>
 	  </ul>
@@ -57,14 +57,14 @@ function bp_seo_main_page() {
 	  <div id="cap_welcome" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 	    <div id="tab-head">
 	    	<div class="sfb-entry">
-				<h2><a href="/wp-admin/admin.php?page=bp_seo_general_page"><?php _e ('General Seo', 'bp-seo') ?></a></h2>
+				<h2><a href="admin.php?page=bp_seo_general_page"><?php _e ('General Seo', 'bp-seo') ?></a></h2>
 		       	<p><?php _e ('This is the place for the general meta(title, description, keywords) optimization in a WP | WPMU | Buddypress environment. The meta options shown in this page will be generated depending on the WP you use and the activated Buddypress components.', 'bp-seo') ?></p>
 			  	<?php if(defined('BP_VERSION')){?>
-				   <h2><a href="/wp-admin/admin.php?page=bp_seo_plugins"><?php _e ('Plugins Seo', 'bp-seo') ?></a></h2>
+				   <h2><a href="admin.php?page=bp_seo_plugins"><?php _e ('Plugins Seo', 'bp-seo') ?></a></h2>
 		       		<p><?php _e ('If you have installed plugins to extend Buddypress, this is the place where to configure the Seo behavior of every component. First you need to select where the component is shown in the front-end. After saving, you will be able to enter all meta data depending on your selection.', 'bp-seo') ?> </p>
 				<?php } ?>	  
 				<h2><a href="admin.php?page=bp_seo_general_page"><?php _e ('Settings', 'bp-seo') ?></a></h2>
-	         	<p><?php _e ('Settings page for the global Seo configuration, update and delete Seo for Buddypress.', 'bp-seo') ?></p>
+	         	<p><?php _e ('Settings page for the global Seo configuration, update and delete SeoPress.', 'bp-seo') ?></p>
 			</div>
 	    </div>
 	    <div class="spacer"></div>
@@ -81,6 +81,9 @@ function bp_seo_main_page() {
 					$wpseo = array
 					(
 						'date'                 => __( 'Replaced with the date of the post/page', 'bp-seo'),
+						'postdate'             => __( 'Replaced with the date formatted like defined in the admin settings', 'bp-seo'),
+						'postdate_month_year'  => __( 'Replaced with the date in format month year', 'bp-seo'),
+						'archivedate'          => __( 'Replaced with the archive date. depends on the archive view day, month, year', 'bp-seo'),
 						'title'                => __( 'Replaced with the title of the post/page', 'bp-seo'),
 						'sitename'             => __( 'The site\'s name', 'bp-seo'),
 						'excerpt'              => __( 'Replaced with the post/page excerpt', 'bp-seo'),
@@ -155,10 +158,10 @@ function bp_seo_main_page() {
 		</div>
 	    <div class="spacer"></div>
 	  </div>
-	  <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
-	  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
-	   <?php seopress_get_pro();?>
-	  </div>
+	  <?php if(!is_pro()){ ?>
+	  	<div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+	  		<?php seopress_get_pro();?>
+	  	</div>
 	  <?php } ?>
 	</div>
 	<script> $(function() { $("#config-tabs").tabs(); }); </script>

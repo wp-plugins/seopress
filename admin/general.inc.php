@@ -117,7 +117,7 @@ function bp_seo_general(){
 			  <?php if(defined( 'SITE_ID_CURRENT_SITE' )){?>
 			  <li><a href="#cap_user_blogs" ><?php _e ('User Blogs', 'bp-seo') ?></a></li>
 			  <?php } ?>
-			  <?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+			  <?php if(!is_pro()){ ?>
 	      		<li class="ui-state-default ui-corner-top"><a href="#cap_pro"><?php _e ('Get the Pro Version', 'bp-seo') ?></a></li>
 			  <?php } ?>
 		  </ul>
@@ -187,7 +187,7 @@ function bp_seo_general(){
 				      		(
 				      			'sitename'          => __( 'The site\'s name', 'bp-seo'),
 				      			'currentcomponent'  => __( 'Replaced with current component', 'bp-seo'),
-				  		      'currentaction'     => __( 'Replaced with current action', 'bp-seo'),
+				  		      	'currentaction'     => __( 'Replaced with current action', 'bp-seo'),
 				      			'usernicename'      => __( 'Replaced with the user\'s nicename', 'bp-seo'),
 				      			'userregistered'    => __( 'Replaced with the user registered', 'bp-seo'),
 				      			'displayname'       => __( 'Replaced with the displayed name of the user', 'bp-seo'),
@@ -311,37 +311,12 @@ function bp_seo_general(){
 		 <?php } ?>
 		  <div id="cap_main_blog" >
 		     <div id="tab-head">
-		       <?php if ( defined( 'BP_VERSION' ) ){?>
-		    	<div class="sfb-entry">
-						<div class="sfb-entry-title"><?php _e ('Special Tags', 'bp-seo') ?></div>
-				    	<?php
-				    		$pos = 0;
-				    		$buddyseo = array
-				    		(
-				    			'sitename'                   => __( 'The site\'s name', 'bp-seo'),
-				    			'currenttime'          => __( 'Replaced with the current time', 'bp-seo'),
-				    			'currentdate'          => __( 'Replaced with the current date', 'bp-seo'),
-				    			'currentmonth'         => __( 'Replaced with the current month', 'bp-seo'),
-				    			'currentyear'          => __( 'Replaced with the current year', 'bp-seo'),
-				    		);
-				    	?>
-				    	<table class="widefat">
-				    		<?php foreach ($buddyseo AS $tag => $text) : ?>
-					    		<tr<?php if ($pos++ % 2 == 1) echo ' class=""' ?>>
-					    			<th>%%<?php echo $tag; ?>%%</th>
-					    			<td><?php echo $text; ?></td>
-					    		</tr>
-					    	<?php endforeach; ?>
-				    	</table>
-				</div>
-				<?php }  else {?>
 					<div id="tab-head">
 			      	<div class="sfb-entry">
-			  				<div class="sfb-entry-title"><?php _e ('Special Tags for WP and WPMU', 'bp-seo') ?></div>
+			  				<div class="sfb-entry-title"><?php _e ('Special Tags', 'bp-seo') ?></div>
 			          <?php _e ('For a list of all available tags go ', 'bp-seo') ?><a href="admin.php?page=seomenue#cap_specialtags" target="_blank"><?php _e ('here', 'bp-seo') ?></a>.
 			  			</div>
 			      </div>
-				<?php } ?>
 		    </div>
 		    <div class="spacer"></div>
 		     <!-- ************ MAIN BLOG HOME  -->
@@ -431,7 +406,7 @@ function bp_seo_general(){
 		  	  	<?php echo bp_seo_entry($lable,$user_blog_tag_pages); ?>
 		    </div>
 		  	<?php } ?>
-		  	<?php if (!file_exists($_SERVER['DOCUMENT_ROOT'].PLUGINDIR."/seopress/pro.inc.php")){?>
+			<?php if(!is_pro()){ ?>
 			  <div id="cap_pro" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
 			   <?php seopress_get_pro();?>
 			  </div>
