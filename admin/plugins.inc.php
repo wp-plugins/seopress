@@ -33,23 +33,14 @@ function bp_seo_plugins() {
 	}?>
 	<div class="wrap">
 	<script type="text/javascript">
-		function openExpandyGroup( groupId )
-		{
-			var eOpen = document.getElementById(groupId + '_open');
-			eOpen.style.display = 'block';
-			var eClosed = document.getElementById(groupId + '_closed');
-			eClosed.style.display = 'none';
-		}
-		function closeExpandyGroup( groupId )
-		{
-			var eOpen = document.getElementById(groupId + '_open');
-			eOpen.style.display = 'none';
-			var eClosed = document.getElementById(groupId + '_closed');
-			eClosed.style.display = 'block';
-		}
+	jQuery(document).ready(function($){
+		$("#config-tabs").tabs();
+	});
 	</script>
+	
 	<h2><?php _e('<b>SeoPress:</b> Plugins Seo Options', 'bp_seo') ?></h2>
 	<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+	
 	<div id="config-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	  	<li><a href="#cap_configuration" ><?php _e('Configuration'); ?></a></li>   

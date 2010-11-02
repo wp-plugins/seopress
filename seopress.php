@@ -6,7 +6,7 @@ Description: Seo for Wordpress, Wordpress MU and Buddypress
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://sven-lehnert.de
 License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
-Version: 1.0.3
+Version: 1.0.4
 Text Domain: bp_seo
 Site Wide Only: false
 */
@@ -139,16 +139,24 @@ function bp_seo_admin_menu() {
 ### add css for the option page
 function seopress_css() {
 	global $docroot;
+
 	echo '<link rel="stylesheet" href="'.get_bloginfo('url').'/'.PLUGINDIR.'/seopress/css/tabcontent.css" type="text/css" media="screen" />';
-	echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
+	
+    if( $_GET['page'] == 'seomenue' || $_GET['page'] == 'bp_seo_general_page'  || $_GET['page'] == 'bp_seo_plugins'  ) {
+		echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
+	}
 }
 
 ### enqueue js for the option page
 function seopress_js() {
-	## wp_deregister_script('jquery');
-	wp_register_script('my-jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', false, '1.3.2');
-	wp_register_script('my-jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js',false,'1.7.1');
-	wp_enqueue_script( 'my-jquery' );
-	wp_enqueue_script( 'my-jquery-ui' );
- }
+
+    if( ! isset( $_GET['page'] ) )
+        return;
+
+    if( $_GET['page'] == 'seomenue' || $_GET['page'] == 'bp_seo_general_page'  || $_GET['page'] == 'bp_seo_plugins'  ) {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('jquery-ui-tabs');
+    }
+    
+}
  ?>

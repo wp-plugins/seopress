@@ -81,20 +81,9 @@ function bp_seo_general(){
 		}
 		*/?>
 		<script type="text/javascript">
-			function openExpandyGroup( groupId )
-			{
-				var eOpen = document.getElementById(groupId + '_open');
-				eOpen.style.display = 'block';
-				var eClosed = document.getElementById(groupId + '_closed');
-				eClosed.style.display = 'none';
-			}
-			function closeExpandyGroup( groupId )
-			{
-				var eOpen = document.getElementById(groupId + '_open');
-				eOpen.style.display = 'none';
-				var eClosed = document.getElementById(groupId + '_closed');
-				eClosed.style.display = 'block';
-			}
+		jQuery(document).ready(function($){
+			$("#config-tabs").tabs();
+		});
 		</script>
 		<h2><?php _e ('<b>SeoPress:</b> General SEO options', 'bp-seo') ?></h2>
 	
