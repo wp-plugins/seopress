@@ -401,7 +401,6 @@ function bp_seo_general(){
 			  </div>
 			<?php } ?>
 		</div>    
-	  	<script> $(function() { $("#config-tabs").tabs(); }); </script>
 	    <p><div class="submit"><input type="submit" name="update_bp_seo" value="<?php _e('Save General SEO options', 'update_bp_seo') ?>"  style="font-weight:bold;" /></div></p>	
 	 </form>   
 	</div>
