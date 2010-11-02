@@ -154,6 +154,5 @@ function bp_seo_main_page() {
 	  	</div>
 	  <?php } ?>
 	</div>
-	<script> $(function() { $("#config-tabs").tabs(); }); </script>
 	</div>
 <?php } ?>
