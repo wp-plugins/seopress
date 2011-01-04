@@ -3,17 +3,15 @@ Contributors: svenl77,mahype
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NWEYBQUNE5PVY
 Tags: seo,buddypress,wpmu,wp
 Requires at least: 2.9.x
-Tested up to: 3.0.1 & buddypress 1.2.x
-Stable tag:  1.0.4
+Tested up to: 3.0.4 & buddypress 1.2.x
+Stable tag:  1.0.5
 
 This plugin adds an option page SeoPress in your admin bar.
 
 == Description ==
-SeoPress is a replacement for "Seo for Buddypress", because the old name wasn't correct anymore.
-
 SeoPress is professional search engine optimization for:<br>
 <br>
-<a href="http://wpplugins.com/plugin/238/seopress-pro-version">Upgrade to Pro Version</a>
+<a href="http://themekraft.com/plugin/seopress-pro/">Upgrade to Pro Version</a>
 <br>
 <ul>
 <li>Wordpress</li>

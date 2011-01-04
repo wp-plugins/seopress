@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: SeoPress
-Plugin URI: http://sven-lehnert.de
+Plugin URI: http://themekraft.com/plugin/seopress/
 Description: Seo for Wordpress, Wordpress MU and Buddypress
 Author: Sven Lehnert, Sven Wagener
-Author URI: http://sven-lehnert.de
+Author URI: http://themekraft.com/
 License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
-Version: 1.0.4
+Version: 1.0.5
 Text Domain: bp_seo
 Site Wide Only: false
 */
@@ -42,11 +42,7 @@ include("admin/get-pro.inc.php");
 
 function is_pro(){
 	$is_pro = false;
-	$docroot = $_SERVER['DOCUMENT_ROOT'];
-	if (substr($_SERVER['DOCUMENT_ROOT'], -1) != "/"){
-	$docroot = $_SERVER['DOCUMENT_ROOT']."/";
-	}
-	if (file_exists($docroot.PLUGINDIR."/seopress/pro.inc.php")){
+	if (file_exists(dirname(__FILE__)."/pro.inc.php")){
 		$is_pro = true;	
 	}	
 	return $is_pro;

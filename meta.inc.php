@@ -447,7 +447,7 @@ function replace_special_tags($meta){
   	$i=0;
   	foreach($meta as $data){
    		$newmeta[$i] = SFB_Special_Tags::replace ($data, $post);
-   		$newmeta[$i] = stripslashes(htmlentities($newmeta[$i], ENT_QUOTES, "UTF-8"));
+   		$newmeta[$i] = stripslashes($newmeta[$i]);
    		$i++;
   	} 
   	return $newmeta; 

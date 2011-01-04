@@ -4,7 +4,7 @@
 		      <h2>Pro Version now available!</h2><br>
 				<b>Get SeoPress Pro Version now, and benefit from more functionality, support and a clean UI.</b><br>
 				<br>
-				<form action="http://wpplugins.com/plugin/238/seopress-pro-version">
+				<form action="http://themekraft.com/plugin/seopress-pro/">
 					<button class="rounded">
 		  					<span>Upgrade now</span>
 					</button>
@@ -31,7 +31,7 @@
 				If you have any improvement or idea, found a bug or you think something
 				could be done in a different way, please write it <a target="_blank" href="http://buddypress.org/community/groups/seopress/home/">here</a>.<br>
 				I will answer every post.<br><br>
-				<form action="http://wpplugins.com/plugin/238/seopress-pro-version">
+				<form action="http://themekraft.com/plugin/seopress-pro/">
 					<button class="rounded">
 		  					<span>Upgrade now</span>
 					</button>
