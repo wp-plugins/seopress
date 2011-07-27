@@ -2,17 +2,14 @@
 /*
 Plugin Name: SeoPress
 Plugin URI: http://themekraft.com/plugin/seopress/
-Description: Seo for Wordpress, Wordpress MU and Buddypress
+Description: Searchengine optimization plugin for Wordpress & Buddypress
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://themekraft.com/
 License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
-Version: 1.0.5
-Text Domain: bp_seo
-Site Wide Only: false
+Version: 1.1 beta
+Text Domain: seopress
+Site Wide Only: true
 */
-//
-// Released under the GPL license
-// http://www.gnu.org/licenses/gpl.txt
 //
 // This is an add-on for WordPress Single, MU and Buddypress
 // http://wordpress.org/
@@ -23,136 +20,68 @@ Site Wide Only: false
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 // **********************************************************************
 
-global $blog_id, $meta, $docroot;
+global $blog_id, $meta, $docroot, $seopress_plugin_url, $seopress_plugin_url, $wpdb;
 
-## Add functions
-include("functions.inc.php");
-include("meta.inc.php");
-include("special-tags.inc.php");
+$seopress_plugin_url = plugin_dir_url( __FILE__ );
 
-## Admin pages
-include("admin/general.inc.php");
-include("admin/plugins.inc.php");
-include("admin/main.inc.php");
-include("admin/single-metabox.php");
-include("admin/settings.inc.php");
-include("admin/get-pro.inc.php");
+// loading langauge engine
+load_plugin_textdomain( 'seopress', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 
-## Check if is pro version
+// Loading libraries
+require_once( 'lib/io.inc.php' );
+require_once( 'lib/wordpress/io.inc.php' );
+require_once( 'lib/wordpress/wp.inc.php' );
+require_once( 'lib/wordpress/wp_url.inc.php' );
+require_once( 'lib/wordpress/functions.php' );
 
-function is_pro(){
-	$is_pro = false;
-	if (file_exists(dirname(__FILE__)."/pro.inc.php")){
-		$is_pro = true;	
-	}	
-	return $is_pro;
-}
-
-if(is_pro()){
-	include("pro.inc.php");
-}
-
-## Buddypress init function
-function bp_seo_init() {
-	global $blog_id;
-	
-	if(defined('SITE_ID_CURRENT_SITE')){
-	    if($blog_id != SITE_ID_CURRENT_SITE){
-	      	add_action('wp_head', 'bp_seo_meta',1);
-	      	add_filter('wp_title', 'bp_seo_mu',0);
-	    } else {
-	      	add_action('wp_head', 'bp_seo_meta',1);
-	      	add_filter('bp_page_title', 'bp_seo',0);
-	    }
-	} else {
-   	add_action('wp_head', 'bp_seo_meta',1);
-	add_filter('bp_page_title', 'bp_seo',0);
-  	}
-}
+require_once( 'lib/buddypress/bp.inc.php' );
+require_once( 'lib/buddypress/bp-functions.php' );
 
 
-## check if Buddypress is installed. If not, check if mu or single Wordpress
-if(defined('BP_VERSION')){
-	add_action('bp_init','bp_seo_init');	
-} else {
-	if(defined('SITE_ID_CURRENT_SITE')){
-    if($blog_id != SITE_ID_CURRENT_SITE){
-      	add_action('wp_head','bp_seo_meta',1);
-      	add_filter('wp_title','bp_seo_mu',0);
-    }else{
-      	add_action('wp_head','bp_seo_meta',1);
-      	add_filter('wp_title','wp_seo',0);
-    }
-    } else {
-      add_action('wp_head','bp_seo_meta',1);
-      add_filter('wp_title','wp_seo',0);
-    }
-}
+require_once( 'lib/wordpress/tk_html/tk_html.php' );
+require_once( 'lib/wordpress/tk_html/tk_html_form.php' );
+require_once( 'lib/wordpress/tk_html/tk_form_element.php' );
+require_once( 'lib/wordpress/tk_html/tk_form_button.php' );
+require_once( 'lib/wordpress/tk_html/tk_form_textfield.php' );
+require_once( 'lib/wordpress/tk_html/tk_form_checkbox.php' );
+require_once( 'lib/wordpress/tk_html/tk_form_select.php' );
 
-## All add actions
-if(get_option('bp_seo_meta_box_post') != true){
-	add_action('edit_form_advanced', 'seo4all_metabox');
-}
-if(get_option('bp_seo_meta_box_page') != true){
-	add_action('edit_page_form', 'seo4all_metabox');
-}
-add_action('admin_menu', 'bp_seo_admin_menu');
-add_action('admin_head','seopress_css');  
-add_action('init', 'seopress_js');
-add_action('save_post','post_seo4all_title');
-add_action('save_post','post_seo4all_description');
-add_action('save_post','post_seo4all_keywords');
-add_action('save_post','post_seo4all_noindex');
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_admin_display.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_form.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_form_textfield.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_form_checkbox.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_metabox.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_option_group.php' );
+require_once( 'lib/wordpress/tk_wp_gui/tk_wp_form_select.php' );
 
-## load the text domain
-$plugin_dir = basename(dirname(__FILE__))."/lang/";
-load_plugin_textdomain( 'seopress', 'wp-content/plugins/' . $plugin_dir, $plugin_dir );
+require_once( 'lib/wordpress/tk_wp_jquery/tk_wp_jqueryui.php' );
+require_once( 'lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_tabs.php' );
+require_once( 'lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_accordion.php' );
+require_once( 'lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_autocomplete.php' );
 
-## create the menu item
-function bp_seo_admin_menu() {
-	global $blog_id;
-	if(!current_user_can('level_10')){ 
-		return false;
-	} else {
-		if(defined('SITE_ID_CURRENT_SITE')){	
-	  		if($blog_id != SITE_ID_CURRENT_SITE){
-	    		return false;
-	   		}
-		}
-	}
+// Loading css and js
+require_once( 'css/loader.php' );
 
-	if(defined('BP_VERSION')){
-		add_menu_page(__('SeoPress'),__('SeoPress'), 'manage_options', 'seomenue', 'bp_seo_main_page');
-		add_submenu_page( 'seomenue', __( 'General Seo', 'bp-seo'),__( 'General Seo', 'bp-seo' ), 'manage_options', 'bp_seo_general_page', 'bp_seo_general_page' );
-		add_submenu_page( 'seomenue', __( 'Plugins Seo', 'bp-seo'), __( 'Plugins Seo', 'bp-seo' ), 'manage_options', 'bp_seo_plugins', 'bp_seo_plugins_page' );
-	} else {
-		add_menu_page(__('SeoPress'),__('SeoPress'), 'manage_options', 'seomenue', 'bp_seo_main_page');
-		add_submenu_page( 'seomenue', __( 'General Seo', 'bp-seo'),__( 'General Seo', 'bp-seo' ), 'manage_options', 'bp_seo_general_page', 'bp_seo_general_page' );
-	
-	}
-}
+// Special tag engine
+require_once( 'special-tags/special-tag-core.php' );
 
-### add css for the option page
-function seopress_css() {
-	global $docroot;
+require_once( 'special-tags/wp/page_types.php' );
+require_once( 'special-tags/wp/sets.php' );
+require_once( 'special-tags/wp/functions.php' );
 
-	echo '<link rel="stylesheet" href="'.get_bloginfo('url').'/'.PLUGINDIR.'/seopress/css/tabcontent.css" type="text/css" media="screen" />';
-	
-    if( $_GET['page'] == 'seomenue' || $_GET['page'] == 'bp_seo_general_page'  || $_GET['page'] == 'bp_seo_plugins'  ) {
-		echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
-	}
-}
+require_once( 'special-tags/bp/page_types.php' );
+require_once( 'special-tags/bp/sets.php' );
+require_once( 'special-tags/bp/functions.php' );
 
-### enqueue js for the option page
-function seopress_js() {
+// Admin pages
+require_once( 'admin/sp_admin_core.php' );
+require_once( 'admin/seo.php' );
+require_once( 'admin/options.php' );
+require_once( 'admin/single_metabox.php' );
 
-    if( ! isset( $_GET['page'] ) )
-        return;
+require_once( 'sp-core.php' );
+require_once( 'update.php' );
 
-    if( $_GET['page'] == 'seomenue' || $_GET['page'] == 'bp_seo_general_page'  || $_GET['page'] == 'bp_seo_plugins'  ) {
-		wp_enqueue_script('jquery');
-		wp_enqueue_script('jquery-ui-tabs');
-    }
-    
-}
- ?>
+add_action( 'init' , 'seopress_init' , 0 );
+
+?>
