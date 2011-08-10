@@ -24,13 +24,17 @@ class SP_CORE{
 		$this->seo_settings = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_seo_settings_values' );
 		$this->options = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_options_values' );
 		$this->init_special_tags();
+		
+		
 					
 		// Initialising data for frontend	
 		if( !is_admin() ){
-
+			
+			global $wp_filter, $merged_filters;
+			
 			if( tk_is_buddypress() ){ // Should be reworked <- BP have to be hooked in
 				remove_all_filters( 'bp_page_title' );				
-				add_filter( 'bp_page_title' , array(&$this, 'init_seo') , 1 ); // Filtering buddypress title 		
+				add_filter( 'bp_page_title' , array(&$this, 'init_seo') , 1 ); // Filtering buddypress title
 			}
 			
 			remove_all_filters( 'wp_title' );
@@ -72,7 +76,8 @@ class SP_CORE{
     * Initializing seo data for reuested page
     * @desc Initializes data for site and sets title
     * */	
-	public function init_seo( $title ){		
+	public function init_seo( $title ){
+		
 		if( !is_404() ){
 			
 			// Setup meta data and getting title
@@ -84,7 +89,6 @@ class SP_CORE{
 			if( $new_title != '' ) $title = stripslashes( strip_tags( $new_title ) );
 				
 		}
-		// echo $title;
 		return $title;	
 	}
 	
@@ -96,6 +100,7 @@ class SP_CORE{
 		global $bp;
 		
 		if( is_single() || is_page() ) $meta = $this->get_post_meta();
+		
 		
 		if( $meta == '' ){
 			$template = $this->get_template();
@@ -116,6 +121,7 @@ class SP_CORE{
 		}else{
 			return $meta;			
 		}
+		
 	}
 	
 	public function get_template( $page_type = '' ){
@@ -155,6 +161,7 @@ class SP_CORE{
 	}
 	
 	public function replace_template( $template ){
+		
 		global $special_tags;	
 	  	$newmeta = Array();
 	  	
@@ -267,9 +274,11 @@ class SP_CORE{
 		do_action( 'sp_init_special_tags' );
 	}
 	
-	public function init_admin(){				
-		$tk_jquery_ui = new TK_WP_JQUERYUI();
-		$tk_jquery_ui->load_jqueryui( array ( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' ) );
+	public function init_admin(){
+		if( $_GET['page'] == 'seopress_seo' || $_GET['page'] == 'seopress_options' ) {				
+			$tk_jquery_ui = new TK_WP_JQUERYUI();
+			$tk_jquery_ui->load_jqueryui( array ( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' ) );
+		}
 	}
 	
 	public function install(){
@@ -300,7 +309,7 @@ function sp_admin_menue(){
 	}
 		
 	add_menu_page( 'SeoPress Admin' , 'SeoPress' , 'manage_options', 'seopress_seo','seopress_seo', $seopress_plugin_url . 'images/icon-seopress-16x16.png');
-	add_submenu_page( 'seopress_seo', __( 'SeoPress - Seo options', 'seopress'),__( 'Seo Settings', 'seopress' ), 'manage_options', 'seopress_seo', 'seopress_seo' );
+	add_submenu_page( 'seopress_seo', __( 'SeoPress - Page types', 'seopress'),__( 'Page types', 'seopress' ), 'manage_options', 'seopress_seo', 'seopress_seo' );
 	add_submenu_page( 'seopress_seo', __( 'SeoPress - Options', 'seopress'),__( 'Options', 'seopress' ), 'manage_options', 'seopress_options', 'seopress_options' );
 }
 
@@ -346,7 +355,10 @@ function sp_get_pro_tab( &$tabs ){
 }
 
 function sp_reset_data(){
-	
 }
 
+function seopress_activate(){
+	$redirect_url = get_bloginfo( 'siteurl' ) . 'wp-admin/admin.php?page=seopress_seo';
+	wp_redirect( $redirect_url ); 	
+}
 ?>

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp,searchengine optimization,networked blogs,title,meta,meta description,meta keywords,noindex
 Requires at least: 2.9.x
 Tested up to: 3.2 & Buddypress 1.2.x
-Stable tag:  1.1 beta 2
+Stable tag:  1.1 beta 3
 
 Searchengine optimization plugin for Wordpress & Buddypress
 
@@ -60,6 +60,17 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 3. **Options**
 
 == Changelog ==
+<h4>1.1 beta 3</h4>
+<ul>
+<li>Renamed update script filename</li>
+<li>Changed version name to beta 3</li>
+<li>Dublicate topic fix</li>
+<li>Fixed Buddpress slug bug (on changed slugs)</li>
+<li>Added function to get real component names</li>
+<li>Changed functions for getting active components on admin pages</li>
+<li>Added german language strings</li>
+<li>Only loading jQuery on SeoPress pages</li>
+</ul>
 <h4>1.1 beta 2</h4>
 <ul>
 <li>Bugfixes and Buddypress 1.5 implementation</li>
