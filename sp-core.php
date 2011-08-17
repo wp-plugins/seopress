@@ -24,9 +24,7 @@ class SP_CORE{
 		$this->seo_settings = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_seo_settings_values' );
 		$this->options = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_options_values' );
 		$this->init_special_tags();
-		
-		
-					
+							
 		// Initialising data for frontend	
 		if( !is_admin() ){
 			
@@ -67,6 +65,8 @@ class SP_CORE{
 			
 			add_action( 'sp_seo_settings_tabs', 'sp_get_pro_tab', 10 );
 			add_action( 'sp_options_tabs', 'sp_get_pro_tab', 10 );
+			add_action( 'admin_head', 'sp_setup', 10 );
+			
 			
 			do_action( 'sp_admin_init' );
 		}
@@ -86,7 +86,7 @@ class SP_CORE{
 			// Adding meta tags to wp head
 			add_action( 'wp_head' , array(&$this, 'insert_meta') , 1 );
 			
-			if( $new_title != '' ) $title = stripslashes( strip_tags( $new_title ) );
+			if( $new_title != '' ) $title = stripslashes( htmlentities( strip_tags( $new_title ) ) );
 				
 		}
 		return $title;	
@@ -150,11 +150,11 @@ class SP_CORE{
 		if( $this->meta['noindex']==true ) echo '<meta name="robots" content="noindex" />' . chr(10); 
 
 	    if( trim( $this->meta['description'] ) != "" || trim( $this->meta['description'] ) == ","){	
-	    	echo '<meta name="description" content="' . addslashes( strip_tags( $this->meta['description'] ) ) . '" />' . chr(10);
+	    	echo '<meta name="description" content="' . stripslashes( htmlentities( strip_tags( $this->meta['description'] ) ) ) . '" />' . chr(10);
 		} 
 	    if( trim( $this->meta['keywords'] ) != '' ){ 
 	    	if(trim( $this->meta['keywords'] ) != ',' ){ //////////////////////////////////// Whats up here? Bad programming?
-	    		echo '<meta name="keywords" content="' . addslashes( strip_tags( $this->meta['keywords'] ) ) . '" />' . chr(10);
+	    		echo '<meta name="keywords" content="' . stripslashes( htmlentities( strip_tags( $this->meta['keywords'] ) ) ) . '" />' . chr(10);
 	    	} 
 		}
 		do_action( 'sp_insert_meta' );
@@ -278,6 +278,8 @@ class SP_CORE{
 		if( $_GET['page'] == 'seopress_seo' || $_GET['page'] == 'seopress_options' ) {				
 			$tk_jquery_ui = new TK_WP_JQUERYUI();
 			$tk_jquery_ui->load_jqueryui( array ( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' ) );
+			
+			add_thickbox();
 		}
 	}
 	
@@ -326,7 +328,7 @@ function sp_get_pro_tab( &$tabs ){
 		      <h2>' . __('Pro Version now available!', 'seopress') . '</h2><br>
 				<b>' . __('Get SeoPress Pro Version now, and benefit from more functionality, support and a clean UI.', 'seopress') . '</b><br>
 				<br>
-				<a href="http://wpplugins.com/plugin/238/seopress-pro-version" target="_blank">' . __('Upgrade now', 'seopress') . '</a>					
+				<a href="https://themekraft.com/plugin/seopress-pro/?s2-ssl=yes" target="_blank">' . __('Upgrade now', 'seopress') . '</a>					
 				<br><br>
 				<h3>' . __('Pro Features', 'seopress') . '</h3>
 				<ol>
@@ -347,7 +349,7 @@ function sp_get_pro_tab( &$tabs ){
 					<li>' . __( 'Xprofile special tags for buddypress', 'seopress') . '</li>
 				</ol>
 				<br>
-				<a href="http://wpplugins.com/plugin/238/seopress-pro-version" target="_blank">' . __('Upgrade now', 'seopress') . '</a>	
+				<a href="https://themekraft.com/plugin/seopress-pro/?s2-ssl=yes" target="_blank">' . __('Upgrade now', 'seopress') . '</a>	
 			</div>
 	    </div>';
 	
@@ -361,4 +363,42 @@ function seopress_activate(){
 	$redirect_url = get_bloginfo( 'siteurl' ) . 'wp-admin/admin.php?page=seopress_seo';
 	wp_redirect( $redirect_url ); 	
 }
+
+function sp_setup(){
+	global $seopress_plugin_url;
+	
+	$sp_setup = get_option( 'seopress_setup' );
+	
+	if( (bool) $sp_setup['activation_run'] == false ){
+		if( true == (bool) $_GET[ 'sp_activate' ] ){
+		
+			echo '<script type="text/javascript">
+					  jQuery(document).ready(function($){
+						 imgLoader = new Image(); // preload image
+						 imgLoader.src = tb_pathToImage;
+					     tb_show("SeoPress - by themekraft.com", "' . $seopress_plugin_url . 'sp-setup.php?page=tk_framework?TB_iframe=true&amp;width=482&amp;height=385" );
+					     // placed right after tb_show call
+					     
+					     // Workaround for getting tabs running
+					     
+					     // See here: http://themeforest.net/forums/thread/wordpress-32-admin-area-thickbox-triggering-unload-event/46916?page=1#434388
+					     // http://wordpress.org/support/topic/wp-32-thickbox-jquery-ui-tabs-conflict
+					     
+						 $("#TB_window,#TB_overlay,#TB_HideSelect").one("unload",killTheDamnUnloadEvent);
+						
+						 function killTheDamnUnloadEvent(e) {
+						    // you
+						    e.stopPropagation();
+						    // must
+						    e.stopImmediatePropagation();
+						    // DIE!
+						    return false;
+						 }
+					  });
+				  	</script>';
+		}
+		update_option( 'seopress_setup',  array( 'activation_run' => true ) );
+	}
+}
+
 ?>
