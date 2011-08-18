@@ -26,9 +26,6 @@ Searchengine optimization plugin for Wordpress & Buddypress
 	<li>Add your own special tags</li>
 </ul>
 
-<h3>Screenshot</h3>
-<img src="http://themekraft.com/wp-content/uploads/2010/11/screenshot-seopress.jpg" alt="" title="SeoPress Screenshot" width="530" height="340" class="alignnone size-full wp-image-1796" />
-
 <h3>How the plugin works</h3>
 SeoPress automaticaly detects your WordPress configuration and offers you the options you need to setup the different page types of WordPress and Buddypress. Just activate it and all values you can set will be shown!
 
