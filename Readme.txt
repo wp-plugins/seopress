@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp,searchengine optimization,networked blogs,title,meta,meta description,meta keywords,noindex
 Requires at least: 2.9.x
 Tested up to: 3.2 & Buddypress 1.2.x
-Stable tag:  1.1
+Stable tag:  1.1.1
 
 Searchengine optimization plugin for Wordpress & Buddypress
 
@@ -25,6 +25,9 @@ Searchengine optimization plugin for Wordpress & Buddypress
 	<li>Action hooks for 3rd party plugins</li>
 	<li>Add your own special tags</li>
 </ul>
+
+<h3>Screenshot</h3>
+<img src="http://themekraft.com/wp-content/uploads/2010/11/screenshot-seopress.jpg" alt="" title="SeoPress Screenshot" width="530" height="340" class="alignnone size-full wp-image-1796" />
 
 <h3>How the plugin works</h3>
 SeoPress automaticaly detects your WordPress configuration and offers you the options you need to setup the different page types of WordPress and Buddypress. Just activate it and all values you can set will be shown!
@@ -77,6 +80,14 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 3. **Options**
 
 == Changelog ==
+<h4>1.1.1</h4>
+<ul>
+<li>Added filter function for correct filtering and changed htmlentities to utf8</li>
+<li>No content in str_replace occured 500 error on server</li>
+<li>Added request if string is empty</li>
+<li>Privacy alert was added if blog is not public</li>
+<li>Added stings to german translations</li>
+</ul>
 <h4>1.1</h4>
 <ul>
 <li>Added setup window on activaion</li>
