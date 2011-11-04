@@ -36,7 +36,8 @@ class SP_CORE{
 			}
 			
 			remove_all_filters( 'wp_title' );
-			add_filter( 'wp_title' ,  array(&$this, 'init_seo') , 1 );  // Filtering wordpress title
+			add_filter( 'wp_title' ,  array( &$this, 'init_seo') , 1, 3 );  // Filtering wordpress title
+			add_filter( 'bloginfo', array( &$this, 'delete_bloginfo_name') , 1, 2 );
 			
 			$this->used_tags = $special_tags->get_tags( $this->page_type ); // ???? Here ????
 			
@@ -72,22 +73,40 @@ class SP_CORE{
 			do_action( 'sp_admin_init' );
 		}
 	}
+
+	/**
+    * Filtering blogname on Website
+	* @param $output string The output of the filter 'bloginfo'
+	* @param $show string The show parameter of the filter 'bloginfo'  
+    * @desc Initializes data for site and sets title
+    * */
+	public function delete_bloginfo_name( $output = '', $show = '' ){
+		if( $show == 'name' || $output == get_option('blogname') || $output == get_option('blogdescription') )
+			$output = '';
+
+		return $output;
+	}
 	
 	/**
     * Initializing seo data for reuested page
     * @desc Initializes data for site and sets title
     * */	
-	public function init_seo( $title ){
+	public function init_seo( $title, $sep = '' , $seplocation = '' ){
 		
-		if( !is_404() ){
+		if( !is_404() && FALSE != $sep ){
+			global $page, $paged;
 			
 			// Setup meta data and getting title
 			$new_title = $this->get_seo_data( 'title' );
 			
+			// Adding Pagination
+			if ( ( $paged >= 2 || $page >= 2 ) && isset( $this->options['show_pagination'] ) )
+				$new_title.= ' | ' . sprintf( __( 'Page %s', 'seopress' ), max( $paged, $page ) );
+			
 			// Adding meta tags to wp head
 			add_action( 'wp_head' , array(&$this, 'insert_meta') , 1 );
 			
-			if( $new_title != '' ) $title = $this->filter_for_html_output( $new_title ) ;
+			if( $new_title != '' ) $title =  apply_filters('sp_title', $this->filter_for_html_output( $new_title ) ) ;
 				
 		}
 		return $title;	
@@ -118,7 +137,7 @@ class SP_CORE{
 		
 		$meta = $this->filter_meta( $meta );
 		
-		$meta['title'] = apply_filters( 'sp_title', $meta['title'] );
+		$meta['title'] = $meta['title'];
 		$meta['description'] = apply_filters( 'sp_description', $meta['description'] );
 		$meta['keywords'] = apply_filters( 'sp_keywords', $meta['keywords'] );
 		$meta['noindex'] = apply_filters( 'sp_noindex', $meta['noindex'] );	

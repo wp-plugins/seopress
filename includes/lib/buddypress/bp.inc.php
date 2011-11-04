@@ -28,8 +28,10 @@ if( !function_exists( 'tk_get_bp_page_type' ) ){
 				}
 			}
 		}
+		
 		return apply_filters( 'tk_get_bp_page_type', $page_type );
 	}
+	
 	add_filter( 'tk_get_page_type', 'tk_get_bp_page_type' );	
 }
 
@@ -66,10 +68,12 @@ if( !function_exists( 'tk_bp_is_active_component' ) ){
 		
 		$component_name = tk_get_bp_component_by_slug( $slug );
 		
-		$components = array_keys( $bp->active_components );
-		
-		foreach( $components AS $key => $component ){
-			$components_arr[ $key ] = tk_get_bp_component_by_slug( $component );
+		if( is_array( $bp->active_components ) ){
+			$components = array_keys( $bp->active_components );
+			
+			foreach( $components AS $key => $component ){
+				$components_arr[ $key ] = tk_get_bp_component_by_slug( $component );
+			}
 		}
 		
 		if( is_array( $components ) ){
