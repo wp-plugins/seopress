@@ -57,7 +57,7 @@ You need more special tags or do you want to extend your own plugin to support S
 
 
 For bug report and feature requests please go to:<br><br>
-https://github.com/Themekraft/SeoPress-Free/issues or to http://themekraft.com/groups/seopress/forum/
+https://github.com/Themekraft/SeoPress/issues or to http://themekraft.com
 
 No lose of individual page settings (Meta's&Title) if used "All in One Seo" and "WPSeo"  before.
 
