@@ -32,6 +32,7 @@ class SP_CORE{
             if(isset($wp_filter['wp_title'])){
                 remove_all_filters( 'wp_title' );
             }
+
             add_filter( 'wp_title', array( &$this, 'init_seo') , 1, 3 );  // Filtering wordpress title
             add_filter( 'bloginfo', array( &$this, 'delete_bloginfo_name') , 1, 2 );
 
@@ -100,6 +101,9 @@ class SP_CORE{
             if( !empty($new_title) )
                 $title = apply_filters('sp_title', $this->filter_for_html_output( $new_title ) ) ;
         }
+
+        if(empty($title))
+            $title = get_bloginfo('name') .' | '. ((is_home()||is_front_page())? get_bloginfo('description') : wp_title(''));
 
         // get rid of | at the end
         $title = trim($title, ' |');
@@ -362,7 +366,6 @@ function sp_admin_menue(){
     add_menu_page( 'SeoPress Admin' , 'SeoPress' , 'manage_options', 'seopress_seo','seopress_seo', $seopress_plugin_url . 'includes/images/icon-seopress-16x16.png');
     add_submenu_page( 'seopress_seo', __( 'SeoPress - Page types', 'seopress'),__( 'Page types', 'seopress' ), 'manage_options', 'seopress_seo', 'seopress_seo' );
     add_submenu_page( 'seopress_seo', __( 'SeoPress - Options', 'seopress'),__( 'Options', 'seopress' ), 'manage_options', 'seopress_options', 'seopress_options' );
-    // add_submenu_page( 'seopress_seo', __( 'Test page', 'seopress'),__( 'Test page', 'seopress' ), 'manage_options', 'seopress_test', 'test_facebook' );
 }
 
 function seopress_init(){
@@ -374,11 +377,11 @@ function sp_get_pro_tab( $tabs ){
     global $seopress_plugin_url;
     $html = '<div id="tab-head">
           <div class="sfb-entry">
-              <div style="width:250px; padding:0 40px 100px 0; float:left;"><a href="http://themekraft.com/plugin/seopress-pro/" target="_blank"><img src="' . $seopress_plugin_url . 'includes/images/seopress-pro-package.jpg" border="0" /></a></div>
+              <div style="width:250px; padding:0 40px 100px 0; float:left;"><a href="http://themekraft.com/shop/seopress-pro/" target="_blank"><img src="' . $seopress_plugin_url . 'includes/images/seopress-pro-package.jpg" border="0" /></a></div>
               <h2>' . __('Pro Version now available!', 'seopress') . '</h2><br>
                 <b>' . __('Get SeoPress Pro Version now, and benefit from more functionality, support and a clean UI.', 'seopress') . '</b><br>
                 <br>
-                <a href="http://themekraft.com/plugin/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>
+                <a href="http://themekraft.com/shop/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>
                 <br><br>
                 <h3>' . __('Pro Features', 'seopress') . '</h3>
                 <ol>
@@ -399,19 +402,11 @@ function sp_get_pro_tab( $tabs ){
                     <li>' . __( 'Xprofile special tags for buddypress', 'seopress') . '</li>
                 </ol>
                 <br>
-                <a href="http://themekraft.com/plugin/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>
+                <a href="http://themekraft.com/shop/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>
             </div>
         </div>';
 
     $tabs->add_tab( 'cap_get_pro', __ ('Get Pro version!', 'seopress'), $html );
-}
-
-function sp_reset_data(){
-}
-
-function seopress_activate(){
-    $redirect_url = get_bloginfo('url') . 'wp-admin/admin.php?page=seopress_seo';
-    wp_redirect( $redirect_url );
 }
 
 function sp_setup(){

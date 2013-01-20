@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Buddypress component functions
+ * BuddyPress component functions
  */
 function sp_get_bp_current_component(){
     global $bp;
@@ -9,23 +9,28 @@ function sp_get_bp_current_component(){
 }
 
 /*
- * Buddypress group functions
+ * BuddyPress group functions
  */
 function sp_get_bp_group_name(){
     global $bp;
+    if(!is_numeric($bp->groups->current_group->id))
+        return false;
     $bp_group = new BP_Groups_Group( $bp->groups->current_group->id );
     return $bp_group->name;
 }
 
 function sp_get_bp_group_description(){
     global $bp;
+    if(!is_numeric($bp->groups->current_group->id))
+        return false;
+
     $bp_group = new BP_Groups_Group( $bp->groups->current_group->id );
     return $bp_group->description;
 }
 
 
 /*
- * Buddypress user functions
+ * BuddyPress user functions
  */
 function sp_get_bp_user_nicename(){
     global $bp;
@@ -46,7 +51,7 @@ function sp_get_bp_user_fullname(){
 
 
 /*
- * Buddypress activity functions
+ * BuddyPress activity functions
  */
 function sp_get_bp_activity_content(){
     global $activities_template, $bp;
@@ -72,7 +77,7 @@ function sp_get_bp_activity_author(){
 
 
 /*
- * Buddypress forum functions (not in groups)
+ * BuddyPress forum functions (not in groups)
  */
 class SP_BP_FORUM_TOPIC{
     public function __construct(){
@@ -83,11 +88,18 @@ class SP_BP_FORUM_TOPIC{
         global $bp, $forum_template;
         $topic_slug = $bp->action_variables[1];
         $topic_id   = bp_forums_get_topic_id_from_slug( $topic_slug );
+        $forum_template->topic = bp_forums_get_topic_details( $topic_id );
+        $array_pos  = false;
 
-        for( $i=0; $i <= count( $forum_template->topics ) ; $i++ ){
+        if(empty($forum_template))
+            return $array_pos;
+
+        $i = 0;
+        foreach($forum_template->topics as $topic){
             if( $topic_id == $forum_template->topics[$i]->topic_id ) {
                 $array_pos = $i;
             }
+            $i++;
         }
 
         return $array_pos;
@@ -95,33 +107,66 @@ class SP_BP_FORUM_TOPIC{
 
     private function get_first_post_id(){
         global $forum_template;
-        return $forum_template->topics[$this->get_forum_arr_pos()]->topic_id;
+
+        $array_pos = $this->get_forum_arr_pos();
+        if(is_numeric($array_pos))
+            return $forum_template->topics[$array_pos]->topic_id;
+
+        return false;
     }
 
     private function get_last_post_id(){
         global $forum_template;
-        return $forum_template->topics[$this->get_forum_arr_pos()]->topic_last_post_id;
+
+        $array_pos = $this->get_forum_arr_pos();
+        if(is_numeric($array_pos))
+            return $forum_template->topics[$array_pos]->topic_last_post_id;
+
+        return false;
     }
 
     public function get_title(){
         global $forum_template;
-        return $forum_template->topics[$this->get_forum_arr_pos()]->topic_title;
+
+        $array_pos = $this->get_forum_arr_pos();
+        if(is_numeric($array_pos))
+            return $forum_template->topics[$array_pos]->topic_title;
+
+        return false;
     }
 
     public function get_poster_name(){
         global $forum_template;
-        return $forum_template->topics[$this->get_forum_arr_pos()]->topic_poster_name;
+
+        $array_pos = $this->get_forum_arr_pos();
+        if(is_numeric($array_pos))
+            return $forum_template->topics[$array_pos]->topic_poster_name;
+
+        return false;
     }
 
     public function get_last_poster_name(){
         global $forum_template;
-        return $forum_template->topics[$this->get_forum_arr_pos()]->topic_last_poster_name;
+
+        $array_pos = $this->get_forum_arr_pos();
+        if(is_numeric($array_pos))
+            return $forum_template->topics[$array_pos]->topic_last_poster_name;
+
+        return false;
     }
 
     public function get_first_post_text(){
         global $bbdb, $forum_template;
-        $post = $bbdb->get_row( $bbdb->prepare( "SELECT * FROM $bbdb->posts WHERE post_id = %d", $this->get_first_post_id() ) );
-        return $post->post_text;
+
+        $post = $bbdb->get_row($bbdb->prepare(
+                                "SELECT * FROM $bbdb->posts
+                                WHERE post_id = %d",
+                                $this->get_first_post_id() ) );
+
+        if(!empty($post))
+            return $post->post_text;
+
+        return false;
     }
 
     public function get_last_post_text(){
@@ -153,7 +198,7 @@ function sp_get_bp_forum_last_post_text(){
 }
 
 /*
- * Buddypress universal functions
+ * BuddyPress universal functions
  */
 function sp_get_bp_current_action(){
     global $bp;
