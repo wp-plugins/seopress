@@ -3,10 +3,10 @@
 Plugin Name: SeoPress
 Plugin URI: http://themekraft.com/shop/seopress-pro/
 Description: Searchengine optimization plugin for Wordpress & Buddypress
-Author: Sven Lehnert, Sven Wagener
+Author: Sven Lehnert, Sven Wagener, slaFFik
 Author URI: http://themekraft.com/
 License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
-Version: 1.2.3
+Version: 1.2.4
 Text Domain: seopress
 Network: true
 */
